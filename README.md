@@ -12,22 +12,28 @@ También asegúrate de tener instalado:
 
 ## Cómo correrlo
 
+```bash
 npm install
 ng serve
+```
 
 Abre `http://localhost:4200` y debería funcionar.
 
 ## Tests
 
-Se está usando JEST
+Se está usando Jest en lugar de Karma.
 
+```bash
 npm test
+```
 
 Para ver el reporte de cobertura:
 
+```bash
 npm test -- --coverage
+```
 
-Los archivos de cobertura quedan en `/coverage`. La cobertura está por encima del 70% en las tres capas principales: servicio, lista y formulario.
+Los archivos de cobertura quedan en `/coverage`.
 
 ### Qué se está testeando
 
@@ -39,7 +45,7 @@ Los archivos de cobertura quedan en `/coverage`. La cobertura está por encima d
 - DELETE /products/:id elimina por id
 - GET /products/verification/:id devuelve true/false según si existe
 
-**ProductListComponent** — 11 tests
+**ProductListComponent** — 12 tests
 - renderiza el componente
 - carga los productos al iniciar
 - la paginación respeta el pageSize seleccionado
@@ -69,65 +75,57 @@ Los archivos de cobertura quedan en `/coverage`. La cobertura está por encima d
 - isInvalid() retorna true/false según el estado del control
 - onReset() limpia el formulario
 
+**DeleteModalComponent** — 3 tests
+- renderiza el componente
+- emite evento confirm al confirmar
+- emite evento cancel al cancelar
+
+**AppComponent** — 2 tests
+- renderiza el componente
+- contiene el router-outlet
+
+### Resultados
+------------------------------|---------|----------|---------|---------|--------------------------------------
+File                          | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+------------------------------|---------|----------|---------|---------|--------------------------------------
+All files                     |   72.22 |    51.11 |   70.58 |   74.84 |                                      
+ app                          |     100 |      100 |     100 |     100 |                                      
+  app.component.ts            |     100 |      100 |     100 |     100 |                                      
+ app/products/delete-modal    |   77.77 |      100 |   33.33 |      75 |                                      
+  delete-modal.component.html |     100 |      100 |     100 |     100 |                                      
+  delete-modal.component.ts   |      75 |      100 |   33.33 |   71.42 | 14-18                                
+ app/products/product-form    |   59.18 |    46.15 |   63.63 |   63.09 | 
+  product-form.component.html |     100 |      100 |     100 |     100 | 
+  product-form.component.ts   |   58.76 |    46.15 |   63.63 |   62.65 | 57-65,99,111-117,130-135,145,155-177
+ app/products/product-list    |    86.2 |    83.33 |      75 |   87.27 | 
+  product-list.component.html |     100 |      100 |     100 |     100 | 
+  product-list.component.ts   |   85.96 |    83.33 |      75 |   87.03 | 74-87,107-108
+ app/products/services        |     100 |      100 |     100 |     100 | 
+  product.service.ts          |     100 |      100 |     100 |     100 | 
+------------------------------|---------|----------|---------|---------|--------------------------------------
+
+Test Suites: 5 passed, 5 total
+Tests:       36 passed, 36 total
+
 ## Estructura
 
+```
 src/app/products/
   product-list/     lista principal
   product-form/     formulario de alta y edición
   delete-modal/     modal de confirmación
   services/         llamadas a la API
   interfaces/       tipado de Product
+```
 
-## Pruebas unintarias JEST
+## Endpoints que consume
 
-PS C:\Users\TEROS\Downloads\prueba-devsu\prueba-devsu> npm test
+La base es `http://localhost:3002/bp`
 
-> prueba-devsu@0.0.0 test
-> jest --coverage        
-
-Determining test suites to run...@angular/compiler-cli@17.3.12 detected. Skipping 'ngcc'
-Tip: To avoid this message you can remove 'jest-preset-angular/global-setup' from your jest config
-
- RUNS  src/app/products/product-list/product-list.component.spec.ts
-
- RUNS  src/app/products/product-list/product-list.component.spec.ts
-
- RUNS  src/app/products/product-list/product-list.component.spec.ts
-
- RUNS  src/app/products/product-list/product-list.component.spec.ts
-
- RUNS  src/app/products/product-list/product-list.component.spec.ts
-
- RUNS  src/app/products/product-list/product-list.component.spec.ts
-
- RUNS  src/app/products/product-list/product-list.component.spec.ts
- PASS  src/app/products/delete-modal/delete-modal.component.spec.ts (17.007 s)
- PASS  src/app/app.component.spec.ts (17.236 s)
- PASS  src/app/products/services/product.service.spec.ts (17.338 s)
- PASS  src/app/products/product-list/product-list.component.spec.ts (19.705 s)
- PASS  src/app/products/product-form/product-form.component.spec.ts (20.181 s)
--------------|---------|----------|---------|---------|-------------------
-File         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
--------------|---------|----------|---------|---------|-------------------
-All files    |   72.22 |    51.11 |   70.58 |   74.84 |                   
- app         |     100 |      100 |     100 |     100 |                   
-  ...nent.ts |     100 |      100 |     100 |     100 |                   
- ...te-modal |   77.77 |      100 |   33.33 |      75 |                   
-  ...nt.html |     100 |      100 |     100 |     100 |                   
-  ...nent.ts |      75 |      100 |   33.33 |   71.42 | 14-18             
- ...uct-form |   59.18 |    46.15 |   63.63 |   63.09 |                   
-  ...nt.html |     100 |      100 |     100 |     100 |                   
-  ...nent.ts |   58.76 |    46.15 |   63.63 |   62.65 | ...35,145,155-177 
- ...uct-list |    86.2 |    83.33 |      75 |   87.27 |                   
-  ...nt.html |     100 |      100 |     100 |     100 |                   
-  ...nent.ts |   85.96 |    83.33 |      75 |   87.03 | 74-87,107-108     
- ...services |     100 |      100 |     100 |     100 |                   
-  ...vice.ts |     100 |      100 |     100 |     100 |                   
--------------|---------|----------|---------|---------|-------------------
-
-Test Suites: 5 passed, 5 total
-Tests:       36 passed, 36 total
-Snapshots:   0 total
-Time:        24.515 s
-Ran all test suites.
-PS C:\Users\TEROS\Downloads\prueba-devsu\prueba-devsu> 
+| Método | Ruta | Para qué |
+|--------|------|----------|
+| GET | /products | traer todos |
+| POST | /products | crear |
+| PUT | /products/:id | editar |
+| DELETE | /products/:id | eliminar |
+| GET | /products/verification/:id | validar que el ID no exista |
