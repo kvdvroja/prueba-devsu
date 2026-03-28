@@ -74,6 +74,7 @@
         </div>
 
         <div class="form-actions">
+          <button type="button" class="btn btn-reset" (click)="goBack()">Regresar</button>
           <button type="button" class="btn btn-reset" (click)="onReset()">Reiniciar</button>
           <button type="submit" class="btn btn-submit" [disabled]="submitting">
             {{ submitting ? 'Guardando...' : 'Enviar' }}
