@@ -1,0 +1,73 @@
+<div class="page-wrapper" (click)="closeMenus()">
+  <header class="page-header">
+    <div class="header-brand">
+      <span class="brand-name">BANCO</span>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <div class="card">
+      <div class="card-toolbar">
+        <input class="search-input" type="text" placeholder="Buscar..." [(ngModel)]="searchText" (input)="onSearch()" />
+        <button class="btn btn-primary" (click)="onAdd()">Agregar</button>
+      </div>
+
+      <div *ngIf="errorMessage" class="error-banner">{{ errorMessage }}</div>
+      <div *ngIf="loading" class="loading-state">Cargando productos...</div>
+
+      <div class="table-wrapper" *ngIf="!loading">
+        <table class="product-table">
+          <thead>
+            <tr>
+              <th>Logo</th>
+              <th>Nombre del producto</th>
+              <th>Descripción</th>
+              <th>Fecha de liberación</th>
+              <th>Fecha de revisión</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of paginatedProducts">
+              <td class="td-logo">
+                <img [src]="product.logo" [alt]="product.name" class="product-logo"
+                  onerror="this.src='assets/placeholder.png'" />
+              </td>
+              <td>{{ product.name }}</td>
+              <td class="td-desc">{{ product.description }}</td>
+              <td>{{ product.date_release | date:'dd/MM/yyyy' }}</td>
+              <td>{{ product.date_revision | date:'dd/MM/yyyy' }}</td>
+              <td class="td-actions">
+                <div class="menu-container">
+                  <button class="menu-trigger" (click)="toggleMenu(product.id, $event)">⋮</button>
+                  <div class="dropdown-menu" *ngIf="openMenuId === product.id" (click)="$event.stopPropagation()">
+                    <button class="dropdown-item" (click)="onEdit(product)">Editar</button>
+                    <button class="dropdown-item dropdown-item--danger"
+                      (click)="onDeleteRequest(product)">Eliminar</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr *ngIf="paginatedProducts.length === 0">
+              <td colspan="6" class="empty-state">No se encontraron resultados</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card-footer">
+        <span class="results-count">{{ filteredProducts.length }} Resultados</span>
+        <div class="page-size-selector">
+          <label>Mostrar</label>
+          <select [(ngModel)]="pageSize" (change)="onPageSizeChange()">
+            <option *ngFor="let size of pageSizeOptions" [value]="size">{{ size }}</option>
+          </select>
+          <label>registros</label>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<app-delete-modal *ngIf="showDeleteModal && selectedProduct" [productName]="selectedProduct.name"
+  (confirm)="onDeleteConfirm()" (cancel)="onDeleteCancel()"></app-delete-modal>

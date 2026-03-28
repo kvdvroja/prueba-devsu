@@ -1,0 +1,85 @@
+<div class="page-wrapper">
+  <header class="page-header">
+    <div class="header-brand">
+      <span class="brand-name">BANCO</span>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Formulario de Registro</h2>
+        <div class="divider"></div>
+      </div>
+
+      <div *ngIf="submitError" class="error-banner">{{ submitError }}</div>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label class="form-label" for="id">ID</label>
+            <input id="id" class="form-control" [class.is-invalid]="isInvalid('id')" type="text" formControlName="id"
+              placeholder="Identificador único" />
+            <span class="error-msg" *ngIf="isInvalid('id')">
+              <span class="error-icon">⚠</span> {{ getError('id') }}
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="name">Nombre</label>
+            <input id="name" class="form-control" [class.is-invalid]="isInvalid('name')" type="text"
+              formControlName="name" placeholder="Nombre del producto" />
+            <span class="error-msg" *ngIf="isInvalid('name')">
+              <span class="error-icon">⚠</span> {{ getError('name') }}
+            </span>
+          </div>
+
+          <div class="form-group form-group--full">
+            <label class="form-label" for="description">Descripción</label>
+            <input id="description" class="form-control" [class.is-invalid]="isInvalid('description')" type="text"
+              formControlName="description" placeholder="Descripción del producto" />
+            <span class="error-msg" *ngIf="isInvalid('description')">
+              <span class="error-icon">⚠</span> {{ getError('description') }}
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="logo">Logo</label>
+            <input id="logo" class="form-control" [class.is-invalid]="isInvalid('logo')" type="text"
+              formControlName="logo" placeholder="URL del logo" />
+            <span class="error-msg" *ngIf="isInvalid('logo')">
+              <span class="error-icon">⚠</span> {{ getError('logo') }}
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="date_release">Fecha de Liberación</label>
+            <input id="date_release" class="form-control" [class.is-invalid]="isInvalid('date_release')" type="date"
+              formControlName="date_release" />
+            <span class="error-msg" *ngIf="isInvalid('date_release')">
+              <span class="error-icon">⚠</span> {{ getError('date_release') }}
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="date_revision">Fecha de Revisión</label>
+            <input id="date_revision" class="form-control" [class.is-invalid]="isInvalid('date_revision')" type="date"
+              formControlName="date_revision" />
+            <span class="error-msg" *ngIf="isInvalid('date_revision')">
+              <span class="error-icon">⚠</span> {{ getError('date_revision') }}
+            </span>
+          </div>
+
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-reset" (click)="onReset()">Reiniciar</button>
+          <button type="submit" class="btn btn-submit" [disabled]="submitting">
+            {{ submitting ? 'Guardando...' : 'Enviar' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+</div>

@@ -1,0 +1,263 @@
+.page-wrapper {
+  min-height: 100vh;
+  background: #f7f8fa;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.page-header {
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 2rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #1a1a2e;
+  }
+}
+
+.page-main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.card-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.search-input {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.9rem;
+  width: 260px;
+  outline: none;
+  transition: border-color 0.2s;
+
+  &:focus {
+    border-color: #f5c518;
+    box-shadow: 0 0 0 3px rgba(245,197,24,0.15);
+  }
+}
+
+.btn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+
+  &-primary {
+    background: #f5c518;
+    color: #1a1a1a;
+
+    &:hover {
+      background: #e6b800;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(245,197,24,0.3);
+    }
+  }
+}
+
+.error-banner {
+  background: #fef2f2;
+  color: #dc2626;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  border-bottom: 1px solid #fee2e2;
+}
+
+.loading-state {
+  padding: 3rem;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+
+  thead tr {
+    background: #f9fafb;
+  }
+
+  th {
+    padding: 0.875rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #6b7280;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  td {
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid #f3f4f6;
+    color: #374151;
+    vertical-align: middle;
+  }
+
+  tbody tr:hover {
+    background: #fffdf0;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+.td-logo {
+  width: 70px;
+}
+
+.product-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  padding: 4px;
+  background: #fff;
+}
+
+.td-desc {
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.td-actions {
+  width: 50px;
+  text-align: center;
+}
+
+.menu-container {
+  position: relative;
+  display: inline-block;
+}
+
+.menu-trigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: #6b7280;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  line-height: 1;
+
+  &:hover {
+    background: #f3f4f6;
+    color: #374151;
+  }
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  z-index: 100;
+  min-width: 130px;
+  overflow: hidden;
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #374151;
+  transition: background 0.15s;
+
+  &:hover {
+    background: #f9fafb;
+  }
+
+  &--danger {
+    color: #dc2626;
+
+    &:hover {
+      background: #fef2f2;
+    }
+  }
+}
+
+.empty-state {
+  text-align: center;
+  color: #9ca3af;
+  padding: 3rem !important;
+  font-size: 0.9rem;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #f0f0f0;
+  background: #fafafa;
+}
+
+.results-count {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.page-size-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+
+  select {
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    outline: none;
+
+    &:focus {
+      border-color: #f5c518;
+    }
+  }
+}
